@@ -36,5 +36,9 @@ Attribute | Type | Notes
 ### Development
 Docs built using Middleman, asset pipeline by Condenser
 
+##### Server
     bundle
     bundle exec middleman server
+
+##### Build
+    bundle exec middleman build
