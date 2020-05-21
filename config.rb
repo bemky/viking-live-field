@@ -3,12 +3,12 @@
 set :source, 'docs-src'
 set :build_dir, 'docs'
 
-activate :condenser do |condenser_configs|
+activate :condenser, prefix: '/viking-live-field' do |condenser_configs|
   condenser_configs.path = [
-    'docs-src/assets/images',
-    'docs-src/assets/stylesheets',
-    'docs-src/assets/stylesheets/highlight',
-    'docs-src/assets/javascripts',
+    'docs-assets/images',
+    'docs-assets/stylesheets',
+    'docs-assets/stylesheets/highlight',
+    'docs-assets/javascripts',
     'node_modules/uniform-ui/lib/assets/stylesheets',
     'src'
   ]
