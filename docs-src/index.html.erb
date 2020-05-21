@@ -1,0 +1,211 @@
+<div class="container pad-v-2x pad-bottom-8x">
+    <h1 class="text-light text-center text-4x text-blue-dark">LiveField</h1>
+    <div class="pad-v-2x">
+        <h1>
+            Basic Usage
+        </h1>
+        <p>Just a plain ole' text field</p>
+        <div class="grid grid-nest">
+            <div class="col-6-md">
+                <div class="rounded bg-white pad border">
+                    <div class="text-bold">
+                        Name
+                    </div>
+                    <div id="basic"></div>
+                </div>
+            </div>
+            <div class="col-6-md">
+                <% block = html_block type: "javascript" do %>
+                    new LiveField({
+                        target: model,
+                        attribute: 'name'
+                    })
+                <% end %>
+                <%= block %>
+            </div>
+        </div>
+        <div class="margin-v-2x">
+            <h3>Options</h3>
+            <table class="uniformTable">
+                <tr>
+                    <th><code>target</code></th>
+                    <td class="text-overflow"><code>Viking.Model | Viking.Collection</code>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th><code>attribute</code></th>
+                    <td class="text-overflow"><code>string</code>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th><code>render</code></th>
+                    <td class="text-overflow"><code>(value, target) => html</code>
+                    <td>Render value for display</td>
+                </tr>
+                <tr>
+                    <th><code>type</code></th>
+                    <td><code>string</code>
+                    <td>text, date, duration, select, multi_select</td>
+                </tr>
+                <tr>
+                    <th><code>save</code></th>
+                    <td><code>boolean</code>
+                    <td>to use <code>.set(attrs)</code> or <code>.save(attrs)</code>. Defaults to <code>typeof target.id !== undefined</code></td>
+                </tr>
+                <tr>
+                    <th><code>container</code></th>
+                    <td><code>string|Element</code>
+                    <td>Passed to Uniform.Popover. Determines where Popover is appended. Useful when overflow and positioning issues.</td>
+                </tr>
+                <tr>
+                    <th><code>inputs</code></th>
+                    <td class="text-overflow"><code>[] | target => Element</code>
+                    <td>array of objects or a function that returns elements to append. See <a href="#inputs">Multiple Inputs</a> below</td>
+                </tr>
+                <tr>
+                    <th><code>labels</code></th>
+                    <td><code>{}</code>
+                    <td>Set language used in rendering form</td>
+                </tr>
+                <tr>
+                    <th><code>labels.title</code></th>
+                    <td><code>target => text</code>
+                    <td>HTML for top of popover</td>
+                </tr>
+                <tr>
+                    <th><code>labels.unset</code></th>
+                    <td><code>string</code>
+                    <td>HTML used for rendering when value is undefined</td>
+                </tr>
+                <tr>
+                    <th><code>labels.record</code></th>
+                    <td><code>string | record => text</code>
+                    <td>HTML for labe of each record when split by record. See <a href="#collections">Collections</a></td>
+                </tr>
+                <tr>
+                    <th><code>labels.split</code></th>
+                    <td><code>string | record => text</code>
+                    <td>Text for "Split by ____". See <a href="#collections">Collections</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="pad-v-2x">
+        <h1>
+            Select Type
+        </h1>
+        <p>Set type to <code>select</code> and pass <code>options</code> to generate a dropdown list.</p>
+        <p>Options can be structured as an array of values, or an array of arrays in the format, <code>[value, text, selected]</code>, where <code>selected</code> is a boolean.</p>
+        <div class="grid grid-nest">
+            <div class="col-6-md">
+                <div class="rounded bg-white pad border">
+                    <div class="text-bold">
+                        Status
+                    </div>
+                    <div id="select"></div>
+                </div>
+            </div>
+            <div class="col-6-md">
+                <% block = html_block type: "javascript" do %>
+                    new LiveField({
+                        target: model,
+                        attribute: 'status',
+                        type: 'select',
+                        options: ['a', 'b', 'c']
+                    })
+                <% end %>
+                <%= block %>
+            </div>
+        </div>
+    </div>
+    <div class="pad-v-2x">
+        <h1>
+            Rendering
+        </h1>
+        <p>By default the value of the passed attribute will be rendered using <code>toString</code>. Pass <code>render</code>, a function, to render specific output.</p>
+        <div class="grid grid-nest">
+            <div class="col-6-md">
+                <div class="rounded bg-white pad border">
+                    <div class="text-bold">
+                        Nickname
+                    </div>
+                    <div id="rendering"></div>
+                </div>
+            </div>
+            <div class="col-6-md">
+                <% block = html_block type: "javascript" do %>
+                    new LiveField({
+                        target: model,
+                        attribute: 'status',
+                        render: (v, target) => `${v} / ${v.toUpperCase()}`
+                    })
+                <% end %>
+                <%= block %>
+            </div>
+        </div>
+    </div>
+    <div class="pad-v-2x ">
+        <a id="inputs"></a>
+        <h1>
+            Multiple Inputs
+        </h1>
+        <p>Set <code>inputs</code> to declare what should be rendered in the form. This allows multiple attributes to be manipulated in one form.</p>
+        <div class="grid grid-nest">
+            <div class="col-6-md">
+                <div class="rounded bg-white pad border">
+                    <div class="text-bold">
+                        Rate
+                    </div>
+                    <div id="multiple-inputs"></div>
+                </div>
+            </div>
+            <div class="col-6-md">
+                <% block = html_block type: "javascript" do %>
+                new LiveField({
+                    target: model,
+                    attribute: 'rate',
+                    render: (v, target) => `${target.first().get('currency')} ${v}`,
+                    inputs: [
+                        {
+                            type: 'number',
+                            attribute: 'rate'
+                        }, {
+                            type: 'select',
+                            attribute: 'currency'
+                            options: ['USD', 'EUR', 'BTC']
+                        }
+                    ]
+                })
+                <% end %>
+                <%= block %>
+            </div>
+        </div>
+    </div>
+    <div class="pad-v-2x pad-bottom-8x">
+        <a id="collections"></a>
+        <h1>
+            Collections
+        </h1>
+        <p>LiveField can also take a collection. It will render a single value when possible and offer ability to split the form and assign independent fields.</p>
+        <div class="grid grid-nest">
+            <div class="col-6-md">
+                <div class="rounded bg-white pad border">
+                    <div class="text-bold">
+                        Group Type
+                    </div>
+                    <div id="js-collections"></div>
+                </div>
+            </div>
+            <div class="col-6-md">
+                <% block = html_block type: "javascript" do %>
+                new LiveField({
+                    target: collection,
+                    attribute: 'type',
+                    render: v => v.titleize()
+                })
+                <% end %>
+                <%= block %>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+@import "uniform";
+@import "highlight/uniform";
+
+html, body{
+    font-family: $system-font;
+    background: color('background');
+    padding: 0;
+    margin: 0;
+    line-height: 1.5;
+}
+
+code{
+    background: rgba(#a700e1, 0.1);
+    color: #a700e1;
+    border-radius: 0.25em;
+}
+pre{
+    code{
+        font-size: 0.8em;
+        padding: 2em;
+        border-radius: 0.25em;
+        background: #AFC8CE;
+        overflow: auto;
+    }
+}

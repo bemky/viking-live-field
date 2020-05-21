@@ -1,0 +1,28 @@
+{
+  "name": "viking-live-field",
+  "version": "2.0.0",
+  "description": "A Render and Edit UI Component for Viking.js Models",
+  "main": "src/viking-live-field.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bemky/viking-live-field.git"
+  },
+  "keywords": [
+    "UI",
+    "components",
+    "viking.js"
+  ],
+  "author": "Ben Ehmke",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bemky/viking-live-field/issues"
+  },
+  "homepage": "https://github.com/bemky/viking-live-field#readme",
+  "dependencies": {
+    "dolla": "^0.1.1",
+    "uniform-ui": "^2.3.8"
+  }
+}
