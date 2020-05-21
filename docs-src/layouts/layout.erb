@@ -8,16 +8,19 @@
     <!-- Use the title from a page's frontmatter if it has one -->
     <title><%= current_page.data.title || "Viking LiveField" %></title>
     <%= stylesheet_link_tag "docs" %>
+    <% if config[:host] %>
+        <base href="<%= config[:host] %>">
+    <% end %>
   </head>
   <body>
     <%= yield %>
   </body>
-    <script src="lib/jquery.js"></script>
-    <script src="lib/underscore.js"></script>
-    <script src="lib/underscore/inflection.js"></script>
-    <script src="lib/backbone.js"></script>
-    <script src="lib/viking.js"></script>
-    <script src="lib/ext/viking/view.js"></script>
-    <%= javascript_include_tag "highlight.pack" %>
+    <script src="/lib/jquery.js"></script>
+    <script src="/lib/underscore.js"></script>
+    <script src="/lib/underscore/inflection.js"></script>
+    <script src="/lib/backbone.js"></script>
+    <script src="/lib/viking.js"></script>
+    <script src="/lib/ext/viking/view.js"></script>
+    <script src="/lib/highlight.pack.js"></script>
     <%= javascript_include_tag "docs" %>
 </html>
