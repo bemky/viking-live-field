@@ -2,6 +2,8 @@
 
 **Docs:** https://bemky.github.io/viking-live-field/
 
+![VikingLiveField](https://user-images.githubusercontent.com/841033/82588128-f30aef80-9b5f-11ea-9677-061b3557ba0b.gif)
+
 ### Installation
     npm install viking-live-field
 
