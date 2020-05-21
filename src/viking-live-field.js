@@ -1,4 +1,4 @@
-import LiveInput from 'live-input';
+import LiveInput from './live-input';
 import {Popover} from 'uniform-ui';
 import {createElement} from 'dolla';
 

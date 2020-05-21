@@ -1,6 +1,6 @@
 {
   "name": "viking-live-field",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A Render and Edit UI Component for Viking.js Models",
   "main": "src/viking-live-field.js",
   "scripts": {
